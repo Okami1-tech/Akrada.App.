@@ -1,0 +1,5 @@
+# app/robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://akrada.app/sitemap.xml
