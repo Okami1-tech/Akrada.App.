@@ -1,14 +1,13 @@
-// app/(main)/(unijos)/unijos/libraries/page.tsx
+// app/(main)/unijos/libraries/page.tsx
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { MapPin, Clock, BookOpen } from 'lucide-react'
+import { MapPin, Clock, BookOpen, Users } from 'lucide-react' // ✅ Added Users import
 
 export const metadata: Metadata = {
   title: 'UNIJOS Libraries & Study Areas | Akrada',
-  description: 'Find all libraries and study areas on University of Jos campus. View opening hours and resources.',
-  keywords: ['unijos libraries', 'campus libraries', 'jos nigeria libraries', 'study areas'],
+  description: 'Find all libraries and study areas on University of Jos campus.',
 }
 
 export default function UnijosLibrariesPage() {
@@ -19,7 +18,7 @@ export default function UnijosLibrariesPage() {
       location: 'Central Campus',
       hours: '7:00 AM - 10:00 PM',
       capacity: '1000',
-      resources: ['Books', 'Journals', 'Computers', 'Study Rooms']
+      resources: ['Books', 'Journals', 'Computers']
     },
     {
       id: '2',
@@ -27,7 +26,7 @@ export default function UnijosLibrariesPage() {
       location: 'Science Faculty',
       hours: '8:00 AM - 9:00 PM',
       capacity: '300',
-      resources: ['Science Books', 'Research Papers', 'Lab Equipment']
+      resources: ['Science Books', 'Research Papers']
     },
     {
       id: '3',
@@ -35,29 +34,21 @@ export default function UnijosLibrariesPage() {
       location: 'Social Sciences Faculty',
       hours: '8:00 AM - 9:00 PM',
       capacity: '250',
-      resources: ['Social Science Books', 'Databases', 'Conference Room']
-    },
-    {
-      id: '4',
-      name: 'Medical Library',
-      location: 'Medical Faculty',
-      hours: '24 Hours',
-      capacity: '200',
-      resources: ['Medical Books', 'Journals', 'Online Resources']
+      resources: ['Social Science Books', 'Databases']
     },
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-purple-900/10 to-black">
+    <div className="min-h-screen bg-black text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold mb-2">UNIJOS Libraries</h1>
-          <p className="text-gray-400">Find all libraries and study areas on University of Jos campus</p>
+          <p className="text-gray-400">Find all libraries on University of Jos campus</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {libraries.map((library) => (
-            <Card key={library.id} className="bg-gray-900 border-gray-700 hover:border-purple-500 transition-all duration-300">
+            <Card key={library.id} className="bg-gray-900 border-gray-700">
               <CardHeader>
                 <CardTitle className="flex items-center justify-between">
                   <span>{library.name}</span>
@@ -77,10 +68,6 @@ export default function UnijosLibrariesPage() {
                   <div className="flex items-center text-sm text-gray-400">
                     <Users className="w-4 h-4 mr-2" />
                     Capacity: {library.capacity}
-                  </div>
-                  <div className="flex items-center text-sm text-gray-400">
-                    <BookOpen className="w-4 h-4 mr-2" />
-                    Resources: {library.resources.join(', ')}
                   </div>
                 </div>
                 <Button className="w-full mt-4 bg-purple-600 hover:bg-purple-700">
