@@ -1,10 +1,9 @@
-// app/(main)/map/page.tsx
+// app/(main)/map/page.tsx - SIMPLIFIED VERSION
 'use client';
 
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase/client';
 import { MapContainer } from '@/components/map/map-container';
-import { LoadingSpinner } from '@/components/common/loading-spinner';
 
 export default function MapPage() {
   const [locations, setLocations] = useState<any[]>([]);
@@ -18,7 +17,6 @@ export default function MapPage() {
 
   const loadMapData = async () => {
     try {
-      // Load UNIJOS as default
       const { data: schoolData } = await supabase
         .from('schools')
         .select('*')
@@ -27,13 +25,10 @@ export default function MapPage() {
 
       if (schoolData) {
         setSchool(schoolData);
-        
-        // Load locations for UNIJOS
         const { data: locationData } = await supabase
           .from('locations')
           .select('*')
           .eq('school_id', schoolData.id);
-
         setLocations(locationData || []);
       }
     } catch (error) {
@@ -45,8 +40,8 @@ export default function MapPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <LoadingSpinner />
+      <div className="min-h-screen bg-black flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-purple-600 border-t-transparent rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -57,10 +52,7 @@ export default function MapPage() {
       school={school}
       selectedCategory={selectedCategory}
       onCategoryChange={setSelectedCategory}
-      onLocationSelect={(location) => {
-        // Handle location selection
-        console.log('Selected location:', location);
-      }}
+      onLocationSelect={(location) => console.log('Selected:', location)}
     />
   );
 }
